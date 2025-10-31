@@ -1,0 +1,37 @@
+Métodos usados:
+
+-> PCA:
+   - PCA() function do package FactoMineR
+
+-> CA:
+   - Usei silhouette para prever o numero de cluster em primeira mão
+   - 2 step approach:
+	1) hierárquica: extrair o numero ótimo de clusters - distancia de eucledian + wardD2; usei dendrograma para a visualização do corte para o numero de clusters
+	2) não hierárquica: k-means function do package stats
+
+
+-> Estatística Inferencial
+   - trata-se de Amostras Independentes - cada individuo tem uma única entrada, isto é, só responde ao questionário uma vez
+   - como temos mais do que uma variáveis dependentes, vamos usar MANOVA
+   - MANOVA ONE-WAY: manova() function with Sum squares of type I
+	ICT com 3 níveis: Pobre/Moderada; Boa; Excelente
+	Sexo com 2 níveis: Feminino; Masculino
+	Descrição com 8 níveis: Médico, Enfermeiro, Fisioterapeuta, Dietista/nutricionista, Tecnico, Outro Prof Saude, Médico dentistista e ortodontista, Farmaceutico e tecn de farmácia
+	Anos de trabalho com 7 níveis: "[0;5]"   "]5;10]"  "]10;15]" "]15;20]" "]20;25]" "]25;30]" ">30"
+
+   1) Calculo dos pressupostos:
+	-> Teste de mardia para normalidade multivariada - usei função mvn() com argumentos mvnTest = 'mardia' e univariateTest = 'SW'
+	-> Box-M test for variance-covariance groups matrix - boxM() function
+   2) Modelo - manova() function with Sum squares of type I
+   	2.1) Effect Size - interpret_eta_squared para ter interpretação além do effect size e usei a regras cohen1992
+   	2.2) Avaliação das diferenças entre os grupos pelos testes: usei summary(modelo, test = '')
+		- wilks lambda
+		- Pillai's Trace (mais robusto para quando não há normalidade multivariada)
+		- Roy largest root (péssimo, não usem os dados deste mano)
+		- Hotelling's Trace
+   3) Se houve diferenças significativas, ou seja, rejeitamos H0 no anterior, executei ANOVA univariada (nota: p-value<0.05/14(0.00357))
+	3.1) com summary.aov() vi cais eram as variáveis com diferenças
+   4) Se houver variáveis com diferenças, passamos para comparações múltiplas:
+	4.1) com aov() criei os modelos para cada variável com anova univariada significativa
+	4.2) Testei Tukey Honestly para saber que grupos tinham diferenças significativas: TukeyHSD() (nota: conf.level = 1-0.00357 )
+
