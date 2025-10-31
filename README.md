@@ -16,11 +16,11 @@ O trabalho foi desenvolvido no âmbito da unidade curricular Análise de Dados M
 
 ## Metodologia
 1. Base de Dados:
-    Origem: Tese de doutoramento “Coping, Fatores Psicossociais e Capacidade para o Trabalho” (Ramos, 2014).
-    Total inicial: 2960 observações e 117 variáveis.
-    Amostra final: 909 profissionais de saúde.
-    Software utilizado: R (v4.4.2).
-    Ficheiro de dados: data2.sav (formato SPSS).
+    - Origem: Tese de doutoramento “Coping, Fatores Psicossociais e Capacidade para o Trabalho” (Ramos, 2014).
+    - Total inicial: 2960 observações e 117 variáveis.
+    - Amostra final: 909 profissionais de saúde.
+    - Software utilizado: R (v4.4.2).
+    - Ficheiro de dados: data2.sav (formato SPSS).
 
 2. Pré-processamento:
     - Filtragem para incluir apenas profissionais de saúde.
